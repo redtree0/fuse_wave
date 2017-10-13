@@ -1,0 +1,53 @@
+<Page ux:Class="CreateContainer" >
+
+	<JavaScript File="./js/createContainer.js" />
+	<Router ux:Dependency="router"/>
+	
+	<DockPanel>
+
+		<ScrollView>
+			<WhileActive>
+				<Callback Handler="{loadImage}"/>
+			</WhileActive>
+
+			<StackPanel Dock="Top" ItemSpacing="7" Margin="7" >
+
+				<Text Value="{_id}" FontSize="50" Visibility="Collapsed" TextColor="#3C4663" Alignment="Center"/>
+
+				<Panel>
+					<Text Value="Name"  Alignment="CenterLeft" />
+					<TextInput ux:Name="name" Value="{name}" Alignment="Center" PlaceholderText="Name" PlaceholderColor="#000" Height="50" Padding="5" />
+				</Panel>
+				
+				<Panel>
+					<Text Value="Image" Alignment="CenterLeft" />
+					<DropdownMenu  Row="0" Column="0" Margin="50,0,0,0" Alignment="Center"  ux:Name="image"   ListItems="{items}" BackgroundColor="#FDFDFD" BorderColor="#5276CA" TextColor="#5276CA" DropdownOffset="40"/>
+				</Panel>
+				
+				<Panel>
+					<Text Value="Command" Alignment="CenterLeft" />
+					<TextInput ux:Name="command" Value="{cmd}" Alignment="Center"  PlaceholderText="Command" PlaceholderColor="#000" Height="50" Padding="5" />
+				</Panel>
+
+				<Panel Row="0" Column="0" Height="50">
+				
+					<Rectangle Color="#5276CA" CornerRadius="10"  Clicked="{create}">
+						<Text Color="#FFF" Value="Create Container" Alignment="Center" Margin="0,10,0,10"/>
+						<!-- <Stroke Width="2" Color="#FFF"/> -->
+					</Rectangle>
+
+				</Panel>
+       		
+			</StackPanel>
+
+		</ScrollView>
+
+	</DockPanel>
+
+	<Visual ux:Dependency="navBar" />
+	<Panel>
+		<AlternateRoot ParentNode="navBar">
+			<NavBarTitle Value="{title}" />
+		</AlternateRoot>
+	</Panel>
+</Page>

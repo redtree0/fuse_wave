@@ -1,0 +1,104 @@
+
+
+<Page ux:Class="ContainerEvent" >
+
+	<Router ux:Dependency="router"/>
+
+	<JavaScript File="./js/containerEvent.js" />
+	
+
+	<Grid ux:Class="Entry" Columns="80, 1*" Padding="10,10">
+					<Text Value="{Resource title}" FontSize="15" Color="#777" Alignment="CenterLeft" />
+					<Text Value="{Resource value}" FontSize="15" Color="#777" Alignment="CenterLeft" />
+	</Grid>
+
+	<DockPanel>
+		
+		<Grid Dock="Bottom" RowCount="1"  Columns="1*,1*"  >
+       	
+		 	<DropdownMenu  Row="0" Column="0" Margin="50,0,0,0" ux:Name="containerEvent"   ListItems="{items}" BackgroundColor="#FDFDFD" BorderColor="#5276CA" TextColor="#5276CA" />
+
+       		<Button Row="0" Column="1" Text="CLI >" Padding="20" Clicked="{goTerminal}" Alignment="Center" />
+
+   		</Grid>
+
+		<ScrollView SnapMinTransform="false">
+			 
+			<StackPanel Dock="Top" ItemSpacing="7" Margin="7" >
+
+				<CogWheelReload  loading="{isLoading}" reloading="{reloadHandler}" />
+				
+				<With Data="{data}">
+					
+					<Panel ux:Class="InfoPanel" Height="30" Padding="10,0,0,0">
+						<Rectangle Layer="Background" CornerRadius="3" Color="#FFF" >
+							<Stroke Width="2" Color="#CEF6F5"/>
+						</Rectangle>
+						<Text Value="{Resource title}" FontSize="15" Color="#777" Alignment="CenterLeft" />
+						
+					</Panel>
+
+					<InfoPanel>
+						<string ux:Key="title" ux:Value="Name" />
+						<Text Value="{title}" Alignment="Center" Color="#000" FontSize="15" />
+					</InfoPanel>
+					
+					<InfoPanel>
+						<string ux:Key="title" ux:Value="Id" />
+						<Text Value="{Id}" Alignment="Center" Color="#000" FontSize="15" TextWrapping="Wrap"/>
+					</InfoPanel>
+
+					<InfoPanel>
+						<string ux:Key="title" ux:Value="State" />
+						<Text Value="{State}" Alignment="Center" Color="#000" FontSize="15" />
+					</InfoPanel>
+
+					<InfoPanel>
+						<string ux:Key="title" ux:Value="Image" />
+						<Text Value="{Image}" Alignment="Center" Color="#000" FontSize="15" />
+					</InfoPanel>
+
+					<InfoPanel>
+						<string ux:Key="title" ux:Value="Labels" />
+						<Text Value="{Labels}" Alignment="Center" Color="#000" FontSize="15" />
+					</InfoPanel>
+
+					<InfoPanel Height="150">
+						<string ux:Key="title" ux:Value="Network" />
+						<Text Value="{Network}" Alignment="Center" FontSize="15" Color="#000" TextWrapping="Wrap"/>
+					</InfoPanel>
+				
+				</With>
+				
+				
+				
+				<Text Value="{Id}" FontSize="50" Visibility="Collapsed" TextColor="#3C4663" Alignment="Center"/>
+				<Text Value="{_id}" FontSize="50" Visibility="Collapsed" TextColor="#3C4663" Alignment="Center"/>
+				<!-- <Text Value="{data}" FontSize="50" TextColor="#3C4663" Alignment="Center"/> -->
+		       	<!-- <Button Text="Connect" Padding="20" Clicked="{connect}" Background="#F7D358"/> -->
+				<Text Value="{result}" FontSize="50" TextColor="#3C4663" Alignment="Center"/>
+
+	   		
+			</StackPanel>
+
+		</ScrollView>
+		
+		 <!-- <DropdownMenu Dock="Bottom" ux:Name="dropOne" ListItems="{items}" BackgroundColor="#FDFDFD" BorderColor="#BFBFBF" /> -->
+		
+
+<!-- 		<Grid Dock="Bottom" RowCount="2"  Columns="1*,1*">
+			<DockPanel Row="0" Column="0">
+		 		<DropdownMenu ux:Name="dropOne" ListItems="{items}" BackgroundColor="#FDFDFD" BorderColor="#BFBFBF" />
+			</DockPanel>
+       		<Button Row="0" Column="1" Text="CLI >" Padding="20" Clicked="{goTerminal}"/>
+   		</Grid>
+ -->
+	</DockPanel>
+	
+	<Visual ux:Dependency="navBar" />
+	<Panel>
+		<AlternateRoot ParentNode="navBar">
+			<NavBarTitle Value="{title}" />
+		</AlternateRoot>
+	</Panel>
+</Page>

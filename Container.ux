@@ -1,0 +1,90 @@
+
+<Page ux:Class="Container">
+	<JavaScript File="./js/container.js" />
+
+	<Router ux:Dependency="router" />
+	
+
+
+
+	<DockPanel>
+
+		<Grid Dock="Bottom" RowCount="1"  Columns="1*"  >
+			<Panel Row="0" Column="0" Height="50">
+				<!-- <Button Text="ADD" Padding="20" TextColor="#FFF" Alignment="Center" /> -->
+				
+				<Rectangle Color="#5276CA" CornerRadius="10"  Clicked="{create}">
+					<Text Color="#FFF" Value="Container ADD" Alignment="Center" Margin="0,10,0,10"/>
+					<Stroke Width="2" Color="#FFF"/>
+				</Rectangle>
+
+			</Panel>
+       		
+   		</Grid>
+
+		<ScrollView SnapMinTransform="false">
+
+			<StackPanel Dock="Top" ItemSpacing="7" Margin="7">
+				
+
+				<CogWheelReload ux:Name="container" loading="{isLoading}" reloading="{reloadHandler}"/>
+
+				<!-- <CogWheelReload  /> -->
+				
+				
+				<Text Value="{title}" FontSize="50" TextColor="#3C4663" Alignment="Center" Visibility="Collapsed"/>
+				<Text Value="{_id}" FontSize="50" TextColor="#3C4663" Alignment="Center" Visibility="Collapsed" />
+
+				<Grid  Columns="100, 1*" Padding="10,10">
+					<Text Value="Docker Host" FontSize="17" Color="#777" Alignment="CenterLeft" />
+					<Text  Value="{title}" FontSize="19" TextColor="#3C4663" Alignment="Center"  />
+				</Grid>
+
+
+				<Each Items="{tdata[0]}">
+					<!-- <Panel Clicked="{clicked}" Height="10"> -->
+					<Panel  Height="30" Padding="10,0,0,0">
+						<Panel Alignment="CenterRight" Clicked="{remove}">
+							<Circle Width="20" Height="20" Color="#5276CA" Alignment="CenterRight"  Margin="0,0,10,0" Opacity="0.8">
+								<Text Value="X" Alignment="Center" Color="#FFF" FontSize="10"  />
+							</Circle>
+						</Panel>
+						<Panel  Clicked="{clicked}" >
+							<Rectangle Layer="Background" CornerRadius="3" Color="#FFF"  >
+								<Stroke Width="2" Color="#CEF6F5"/>
+							</Rectangle>
+
+							<Text Value="{Names[0]}" Alignment="CenterLeft" Color="#000" FontSize="15" Margin="10,0,0,0" />
+							
+
+							<RemovingAnimation>
+								<Move RelativeTo="Size" X="-1" Duration="0.4" Easing="CircularOut" />
+							</RemovingAnimation>
+						</Panel>
+
+					</Panel>
+					
+					<Divider />
+				</Each>
+
+			</StackPanel>
+
+
+		</ScrollView>
+		
+	 </DockPanel>
+
+	<Visual ux:Dependency="navBar" />
+	<Panel>
+		<AlternateRoot ParentNode="navBar">
+			<NavBarTitle Value="Container" />
+		</AlternateRoot>
+	</Panel>
+
+	<WhileActive>
+		<!-- <Callback Handler="{loadContainer}" /> -->
+		<Callback Handler="{reloadHandler}" />
+
+	 </WhileActive>
+	
+</Page>

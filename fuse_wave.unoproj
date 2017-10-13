@@ -1,0 +1,16 @@
+{
+  "RootNamespace":"",
+  "Packages": [
+    "Fuse",
+    "FuseJS"
+  ],
+  "Includes": [
+    "*",
+    "./js/module/socket.io-1.4.5.js:Bundle",
+    "./js/module/Socketio.js:Bundle",
+    "./js/module/Fetch.js:Bundle",
+    "./js/module/Config.js:Bundle",
+    "./js/module/Load.js:Bundle"
+  ]
+}
+

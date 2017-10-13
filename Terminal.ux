@@ -1,0 +1,31 @@
+<Page ux:Class="Terminal">
+	<JavaScript File="./js/terminal.js"/>
+
+	 <Activated>
+		<Callback Handler="{connect}" />
+	 </Activated>
+	 <Deactivated>
+		<Callback Handler="{disconnect}" />
+	 </Deactivated>
+	 
+	<DockPanel Background="#000">
+		<TextInput Dock="Top"  ux:Name="text" PlaceholderText="Command" PlaceholderColor="#ccc" Height="50" Padding="5" Value="{command}">
+			<Rectangle Layer="Background">
+            	<Stroke Width="2" Brush="#BBB" />
+        	</Rectangle>
+        	<OnKeyPress Key="Enter" Handler="{enterClicked}" />
+		     
+		</TextInput>
+		<Text Dock="Top" ux:Name="result" Value="{result}" TextColor="#3C4663" Alignment="CenterLeft" />
+		<Text Value="{Id}" FontSize="50" Visibility="Collapsed" TextColor="#3C4663" Alignment="Center"/>
+
+	</DockPanel>
+
+	<Visual ux:Dependency="navBar" />
+	<Panel>
+		<AlternateRoot ParentNode="navBar">
+			<NavBarTitle Value="{title}" />
+		</AlternateRoot>
+	</Panel>
+</Page>
+

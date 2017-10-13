@@ -1,0 +1,114 @@
+
+<App Background="#eee">
+	<Router ux:Name="router"/>
+
+	<ClientPanel>
+		
+		<DockPanel>
+			<JavaScript File="./js/host.js" />
+			<StackPanel Dock="Top" Background="#5276CA">
+
+				<StatusBarBackground/>
+				<Fuse.iOS.StatusBarConfig Style="Light"/>
+
+				<Panel ux:Name="navBar" Dock="Top" Height="50">
+					
+					<Hamburger Alignment="Left" ux:Name="hamburger">
+						<Clicked>
+							<!-- <NavigateToggle Target="sidebar" /> -->
+						</Clicked>
+					</Hamburger>
+					
+					<WhileCanGoBack>
+						
+						<Panel ux:Name="backButton" Width="90" Height="50" Alignment="Left" 
+						       Padding="20,0,0,0" HitTestMode="LocalBounds">
+
+							<DockPanel>
+								<Image File="./assets/image/arrow-left-white.png" Height="20" Color="#fff" Dock="Left"/>
+								<Text Alignment="Center" Margin="5,0,0,0" FontSize="18" Color="#fff" Dock="Right">
+									BACK
+								</Text>
+							</DockPanel>
+							<AddingAnimation>
+								<Change backButton.Opacity="0" Duration=".3" />
+							</AddingAnimation>
+							<RemovingAnimation>
+								<Change backButton.Opacity="0" Duration=".3" />
+							</RemovingAnimation>
+							
+							<Clicked>
+								<GoBack />
+							</Clicked>
+						
+						</Panel>
+
+					</WhileCanGoBack>
+
+				</Panel>
+
+			</StackPanel>
+			
+			<BottomBarBackground Dock="Bottom" />
+		
+
+			<Navigator DefaultPath="mainPage"  Reuse="Inactive">
+
+
+				<Page ux:Template="mainPage">
+					<!-- <Activated> -->
+				
+
+					
+					<!-- </Activated> -->
+					<WhileActive>
+						<Set hamburger.Visibility="Visible"/>
+						<!-- <Callback Handler="{init}" /> -->
+						<!-- <Callback Handler="{init}" /> -->
+						<Callback Handler="{reloadHandler}" />
+					</WhileActive>
+				
+
+					<ScrollView SnapMinTransform="false">
+						<StackPanel ItemSpacing="7" Margin="7">
+							<CogWheelReload  loading="{isLoading}" reloading="{reloadHandler}" />
+							
+							
+							<Each Items="{tdata}">
+								 <Panel Clicked="{clicked}" Height="50">
+									
+									<Rectangle Layer="Background" CornerRadius="3" Color="#FFF" >
+										<Stroke Width="2" Color="#CEF6F5"/>
+									</Rectangle>
+									<Text Value="{title}" Alignment="Center" Color="#000" FontSize="15" />
+									<Clicked>
+										<Set hamburger.Visibility="Collapsed"/>
+									</Clicked>
+								</Panel>
+								<Divider />
+							</Each>
+						</StackPanel>
+						
+
+					</ScrollView>
+					
+					<AlternateRoot ParentNode="navBar">
+						<NavBarTitle>Wave</NavBarTitle>
+					</AlternateRoot>
+				</Page>
+
+				<Container ux:Template="Container" navBar="navBar" router="router"/>
+				<ContainerEvent ux:Template="ContainerEvent" navBar="navBar" router="router" />
+				<CreateContainer ux:Template="CreateContainer" navBar="navBar" router="router" />
+				<Terminal  ux:Template="Terminal" navBar="navBar"  />
+				<!-- <Result ux:Template="Result"  navBar="navBar" /> -->
+			</Navigator>
+
+			<!-- </Panel> -->
+			<Image File="./assets/image/docker.png" Height="200" Opacity="0.3" />
+		</DockPanel>
+
+
+	</ClientPanel>
+
+</App>
